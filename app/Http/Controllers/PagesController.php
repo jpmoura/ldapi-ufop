@@ -95,4 +95,9 @@ class PagesController extends Controller
         }
         else return response("You don't have permission for access the control panel.", 401);
     }
+
+    public function getAbout()
+    {
+        return response(view('pages.about'));
+    }
 }

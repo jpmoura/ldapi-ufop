@@ -15,6 +15,8 @@ $app->get('/', function () use ($app) {
     return response("LD(AP)I version 1.0.0");
 });
 
+$app->get('/sobre', ['as' => 'getAbout', 'uses' => 'PagesController@getAbout']);
+
 $app->group(['middleware' => 'auth', 'namespace' => 'App\Http\Controllers'], function () use ($app) {
 
     /* Dashboard routes */
