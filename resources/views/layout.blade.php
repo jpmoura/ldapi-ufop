@@ -1,66 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
     <title>LD(AP)I - @yield('title')</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+    <link href="{{ url("public/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="{{ url('public/dist/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="{{ url("public/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins -->
+    <link href="{{ url("public/dist/css/skins/skin-ufop.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ url("public/dist/css/custom.css")}}" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    @yield('extrasHeadImports')
+    @yield('extracss')
+
+    <link rel="shortcut icon" href="{{url('public/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{url('public/favicon.ico')}}" type="image/x-icon">
+@yield('extrasHeadImports')
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="skin-ufop hold-transition sidebar-mini">
+
 @yield('extrasTopBodyImports')
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url('/admin') }}">LD(AP)I</a>
-        </div>
+<div class="wrapper">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav">
-                <li @yield('homeActive')><a href="{{ url('/admin') }}"><i class="fa fa-home"></i> Home</a></li>
-                <li @yield('settingsActive')><a href="{{ url('/list/settings') }}"><i class="fa fa-sliders"></i> AD Settings</a></li>
-                <li @yield('fieldsActive')><a href="{{ url('/list/fields') }}"><i class="fa fa-th-list"></i> AD Fields</a></li>
-                <li @yield('usersActive')><a href="{{ url('/list/users') }}"><i class="fa fa-users"></i> API Users</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+    <!-- Header -->
+@include('header')
 
-<div class="container">
-    @if(isset($_SESSION["type"]))
-        <div class="row">
-            <div class="alert @if($_SESSION["type"] == "success") alert-success @else alert-danger @endif">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {!! $_SESSION["message"] !!}
-            </div>
-        </div>
+<!-- Sidebar -->
+@include('sidebar')
 
-        @php
-            session_unset();
-            session_destroy();
-        @endphp
-    @endif
+<!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>@yield('title')
+                <small>@yield('description')</small>
+            </h1>
 
-    @yield('body')
-</div>
+            <ol class="breadcrumb">
+                <li><a href="{{url('/admin')}}"><i class="fa fa-home"></i> Início</a></li>
+                @yield('breadcrumb')
+            </ol>
+        </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!-- Main content -->
+        <section class="content">
+            @if(isset($_SESSION["type"]))
+                <div class="row">
+                    <div class="alert @if($_SESSION["type"] == "success") alert-success @else alert-danger @endif">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {!! $_SESSION["message"] !!}
+                    </div>
+                </div>
+
+                @php
+                    session_unset();
+                    session_destroy();
+                @endphp
+            @endif
+
+            @yield('body')
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+
+    <!-- Footer -->
+    @include('footer')
+</div><!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.2.4 -->
+<script src="{{ url ('public/plugins/jQuery/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+<!-- Bootstrap 3.3.2 JS -->
+<script src="{{ url ('public/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<!-- SlimScroll -->
+<script src="{{ url ('public/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+<!-- FastClick -->
+<script src="{{ url ('public/plugins/fastclick/fastclick.js') }}" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<script src="{{ url ('public/dist/js/app.min.js') }}" type="text/javascript"></script>
+<!-- Page specific -->
 @yield('extrasBottomBodyImports')
-</body>
-</html>

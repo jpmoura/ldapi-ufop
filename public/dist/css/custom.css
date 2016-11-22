@@ -1,0 +1,66 @@
+
+/* Largura do ícone de ajuda no formulário */
+.input-group-addon {
+    width: 41px;
+}
+
+.input-api-settings {
+    width: 164px;
+}
+
+.input-api-field {
+    width: 71px;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.ufop-border {
+    border-top: 3px solid #962038;
+}
+
+.bg-ufop {
+    background-color: #962038;
+    color: white;
+}
+
+.btn-ufop {
+    background-color: #962038;
+    color: white;
+}
+
+.btn-ufop:hover {
+    color: black;
+    background-color: lightgray;
+}
+
+.btn-ufop:visited {
+    color: white;
+}
+
+.btn-ufop:active {
+    color: black;
+    background-color: whitesmoke;
+}
+
+a.btn-ufop {
+    color: white;
+}
+
+a.btn-ufop:hover {
+    color: black;
+    background-color: whitesmoke;
+    border: solid 1px black;
+}
+.no-resize {
+    resize: none;
+}
+
+.btn-success {
+    color: white;
+}
+
+a.link-ufop {
+    color: #962038;
+}

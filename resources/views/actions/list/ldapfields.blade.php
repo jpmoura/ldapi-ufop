@@ -1,30 +1,31 @@
 @extends('layout')
 
 @section('title')
-    List of AD fields and their alias
+    Lista dos campos disponíveis para API
 @endsection
 
 @section("fieldsActive")
     class="active"
 @endsection
 
+@section('breadcrumb')
+    <li><a href="{{url('/list/fields')}}"><i class="fa fa-th-list"></i> Campos</a></li>
+@endsection
+
 @section('extrasHeadImports')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/jqc-1.12.3/dt-1.10.12/r-2.1.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{url ('public/plugins/datatables/dataTables.bootstrap.css')}}"/>
 @endsection
 
 @section('body')
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">List of AD fields and their alias</h3>
-        </div>
-        <div class="panel-body">
+    <div class="box box-primary-ufop">
+        <div class="box-body">
             <div class="text-center">
                 <table class="table table-responsive table-bordered table-hover table-stripped" id="fields">
                     <thead>
                     <tr>
-                        <th>Field</th>
-                        <th>Alias</th>
-                        <th>Action</th>
+                        <th>Campo</th>
+                        <th>Apelido</th>
+                        <th>Ação</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,23 +33,23 @@
                         <tr>
                             <td>{!! $field->name !!}</td>
                             <td>{!! $field->alias !!}</td>
-                            <td><a href="{{ url("/edit/fields/" . base64_encode($field->name)) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a></td>
+                            <td><a href="{{ url("/edit/fields/" . base64_encode($field->name)) }}" class="btn btn-ufop btn-xs"><i class="fa fa-edit"></i> Editar</a></td>
                         </tr>
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>AD Field</th>
-                        <th>Alias</th>
-                        <th>Action</th>
+                        <th>Campo</th>
+                        <th>Apelido</th>
+                        <th>Ação</th>
                     </tr>
                     </tfoot>
                 </table>
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn btn-default" onclick="history.back()"><i class="fa fa-arrow-left"></i> Back</button>
-                <a href="{{ url('/add/fields') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add field</a>
+                <button type="button" class="btn btn-default" onclick="history.back()"><i class="fa fa-arrow-left"></i> voltar</button>
+                <a href="{{ url('/add/fields') }}" class="btn btn-success"><i class="fa fa-plus"></i> Adicionar</a>
             </div>
         </div>
     </div>
@@ -56,7 +57,8 @@
 
 
 @section('extrasBottomBodyImports')
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/jqc-1.12.3/dt-1.10.12/r-2.1.0/datatables.min.js"></script>
+    <script type="text/javascript" src="{{url ('public/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{url ('public/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('#fields').DataTable();

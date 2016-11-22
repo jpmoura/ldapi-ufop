@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Dashboard
+    Painel de controle
 @endsection
 
 @section('homeActive')
@@ -10,9 +10,9 @@
 
 @section('body')
     <div class="text-center">
-        <h3>Select a option</h3>
-        <a class="btn btn-default" href="{{ url('/list/settings') }}"><i class="fa fa-3x fa-sliders"></i> <br> AD Settings</a>
-        <a class="btn btn-default" href="{{ url('/list/fields') }}"><i class="fa fa-3x fa-th-list"></i> <br> AD Fields</a>
-        <a class="btn btn-default" href="{{ url('/list/users') }}"><i class="fa fa-3x fa-users"></i> <br>API Users</a>
+        <h3>Selecione uma opção</h3>
+        <a class="btn btn-default link-ufop" href="{{ url('/list/settings') }}"><i class="fa fa-3x fa-cogs"></i> <br> Configurações</a>
+        <a class="btn btn-default link-ufop" href="{{ url('/list/fields') }}"><i class="fa fa-3x fa-th-list"></i> <br> Campos</a>
+        <a class="btn btn-default link-ufop" href="{{ url('/list/users') }}"><i class="fa fa-3x fa-users"></i> <br> Usuários</a>
     </div>
 @endsection

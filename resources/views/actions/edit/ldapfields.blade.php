@@ -1,7 +1,11 @@
 @extends('layout')
 
 @section('title')
-    Edit AD Field {!! $field->name !!}
+    Editar Campo {!! $field->name !!}
+@endsection
+
+@section('breadcrumb')
+    <li><a href="{{url('/list/fields')}}"><i class="fa fa-th-list"></i> Campos</a></li>
 @endsection
 
 @section('fieldsActive')
@@ -9,30 +13,27 @@
 @endsection
 
 @section('body')
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Edit AD Field {!! $field->name !!}</h3>
-        </div>
+    <div class="box box-primary-ufop">
         <div class="panel-body">
             <form class="form" accept-charset="utf-8" action="{{ url('/edit/fields') }}" method="post">
                 <input type="hidden" name="id" value="{!! $field->name !!}" />
-                <div class="input-group">
-                    <span class="input-group-addon">Attribute name</span>
-                    <input name="name" class="form-control" type="text" placeholder="AD field name" value="{!! $field->name !!}" required />
+                <div class="input-group input-api-field">
+                    <span class="input-group-addon input-api-field">Nome</span>
+                    <input name="name" class="form-control" type="text" placeholder="Nome do campo no Servidor AD" value="{!! $field->name !!}" required />
                 </div>
 
                 <div class="input-group">
-                    <span class="input-group-addon">Attribute alias</span>
-                    <input name="alias" class="form-control" type="text" placeholder="Alias" value="{!! $field->alias !!}" required />
+                    <span class="input-group-addon input-api-field">Apelido</span>
+                    <input name="alias" class="form-control" type="text" placeholder="Apelido na API" value="{!! $field->alias !!}" required />
                 </div>
 
                 <br>
 
                 <div class="text-center">
-                    <button class="btn btn-default" type="button" onclick="history.back()"><i class="fa fa-times"></i> Cancel</button>
-                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Delete</button>
-                    <button class="btn btn-warning" type="reset"><i class="fa fa-eraser"></i> Reset</button>
-                    <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Submit</button>
+                    <button class="btn btn-default" type="button" onclick="history.back()"><i class="fa fa-times"></i> Cancelar</button>
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Apagar</button>
+                    <button class="btn btn-warning" type="reset"><i class="fa fa-eraser"></i> Resetar</button>
+                    <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Aplicar</button>
                 </div>
             </form>
         </div>
@@ -43,16 +44,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center">Delete Field {!! $field->name !!}</h4>
+                    <h4 class="modal-title text-center">Apagar campo {!! $field->name !!}</h4>
                 </div>
                 <div class="modal-body text-center">
-                    Are you sure?
+                    Você tem certeza?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
                     <form action="{{ url('delete/fields') }}" method="post">
                         <input type="hidden" name="id" value="{!! $field->name !!}" />
-                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-trash"></i> Delete</button>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-trash"></i> Apagar</button>
                     </form>
                 </div>
             </div><!-- /.modal-content -->
